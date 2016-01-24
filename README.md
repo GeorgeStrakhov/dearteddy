@@ -1,4 +1,4 @@
-<img src="branding/dearteddy.svg" width="30%" />
+<img src="https://raw.githubusercontent.com/GeorgeStrakhov/dearteddy/master/branding/dearteddy.svg" width="30%" />
 
 ## Problem
 
