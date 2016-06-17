@@ -14,18 +14,19 @@ We all need somebody to talk to every now and then. The simple act of talking to
 
 *Dear Teddy*
 
+* Anonymous p2p life debugging
 * Anonymous chat app for asymmetric peer-to-peer therapy
-* Universal Problem Solver // [General Problem Solver](https://en.wikipedia.org/wiki/General_Problem_Solver) for the era of social computing
+* [General Problem Solver](https://en.wikipedia.org/wiki/General_Problem_Solver) for the era of social computing
 * "Dear Teddy, please make everything alright"
 * Debug your life
 
 ## How it works (scenarios)
 
-1. You go to a website or launch a mobile app.
-2. Choose whether you need to talk to a teddy bear (role:user) or want to be somebody's teddy bear (role:bear).
+1. You go to a website or launch a mobile app (later).
+2. Choose whether you need to talk to a teddy bear (role:human) or want to be somebody's teddy bear (role:bear).
 3. Wait for a few seconds for a match (other random online user who is willing to perform an opposite role).
 4. You are dropped into a conversation (chat) with pre-filled beginning: Teddy said: "Hey, what's bothering you?"
-5. From there on the user (role:user) can type her messages and send them to the bear (role:bear)
+5. From there on the user (role:human) can type her messages and send them to the bear (role:bear)
 6. To prevent abuse, the bear (role:bear) can only reply with messages from a large number of pre-defined options, such as:
     * I understand.
     * I wish I could give you a hug right now!
@@ -40,28 +41,21 @@ We all need somebody to talk to every now and then. The simple act of talking to
     * Hold on, I'll be back in a minute.
     * I think you really need to go talk to a doctor...
     * What does your mother think about it?
-    * (plus various positive emojis)
+    * (plus various empathetic emojis)
     * ...
 7. At any point both user and bear can leave the conversation (which returns them to a role-choosing screen).
-    * if  the user (role:user) leaves the conversation first, then a message is displayed to the bear (as if from the user): "Thank you, you've helped a lot!"
+    * if  the user (role:human) leaves the conversation first, then a message is displayed to the bear (as if from the user): "Thank you, you've helped a lot!"
     * if the bear (role:bear) leaves the conversation first, then a message is displayed to the user first ("Hmm, let me think.") and then as soon as a new bear is available he is dropped into the conversation (and asked to read the history of the conversation before continuing).
 8. Before leaving the conversation each is asked to rate his experience (0-5 stars and leave a comment).
 
 ## Technology Stack
 
 * Meteor
-* Angular
-* Ionic
-
-Useful Tutorials & Links:
-
-* http://www.angular-meteor.com/tutorials/socially/angular1/bootstrapping
-* https://www.meteor.com/tutorials/angular/creating-an-app
-* http://info.meteor.com/blog/whatsapp-with-meteor-angular-and-ionic
+* React
 
 ## Glossary
 
-* User - created every time with a new session.
+* User (a.k.a. human) - created every time with a new session (or we can persist it as a unique device via localstorage)
 * Conversation - users are assigned to a conversation. One conversation per user at a time.
 * Message - single saying in a conversation. Belongs to conversation and user.
 * Phrase - one of the large number of pre-defined sayings that bear may say.
