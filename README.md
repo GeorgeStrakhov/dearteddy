@@ -52,10 +52,11 @@ We all need somebody to talk to every now and then. The simple act of talking to
 
 * Meteor
 * React
+* Bootstrap
 
 ## Glossary
 
-* User (a.k.a. human) - created every time with a new session (or we can persist it as a unique device via localstorage)
+* User (role:human or role:bear) - created every time with a new session (or we can persist it as a unique device via localstorage)
 * Conversation - users are assigned to a conversation. One conversation per user at a time.
 * Message - single saying in a conversation. Belongs to conversation and user.
 * Phrase - one of the large number of pre-defined sayings that bear may say.
