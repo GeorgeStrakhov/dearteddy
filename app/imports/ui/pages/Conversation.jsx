@@ -1,93 +1,37 @@
 import React from 'react';
-import moment from 'moment';
-
-import { Messages } from '../../api/messages.js';
-
-class Message extends React.Component {
-  render() {
-    let className = '';
-    
-    const user = {};
-    
-    if (this.props.humanId) {
-      className += 'text-right ';
-      user.type = 'Human';
-    } else {
-      className += 'text-left ';
-      user.type = 'Bear'; 
-    }
-
-    return (
-        <div className={className}>
-          <p>
-            <span className="text-success">{user.type}</span> <br />
-            {this.props.text} <br />
-            {moment(this.props.timestamp).fromNow()}
-          </p>
-        </div>
-      )
-  }
-}
+import MessageList from '../components/MessageList.jsx';
+import MessageInput from '../components/MessageInput.jsx';
+import Loading from '../components/Loading.jsx';
 
 class Conversation extends React.Component {
   constructor(props) {
     super(props);
-
-    this.state = {
-      messageInput: ''
-    };
   }
 
-  handleSubmit(e) {
-    e.preventDefault();
+  render() { 
+    const { loading, messages, conversation } = this.props;
 
-    Messages
-      .insert({
-        text: this.state.messageInput,
-        timestamp: Date.now(),
-        conversationId: this.props.params.id
-      });
+    let Body;
 
-    this.setState({
-      messageInput: ''
-    });
+    if (conversation) {
+      Body = (
+        <div>
+          <h1>ID: #{conversation._id}</h1>
+          <MessageInput conversation={conversation} />
+          <MessageList messages={messages} />
+        </div>
+      );
+    } else {
+      Body = <Loading />
+    }
+
+    return Body;
   }
+}
 
-  handleMessageChange(e) {
-    this.setState({
-      messageInput: e.target.value
-    });
-  }
-
-  render() {
-    const Messages = this.props.messages
-      .map((message) => (
-          <Message {...message} key={message._id} />
-        ));
-
-    return (
-      <div className="well">
-        <h1>This is conversation #{this.props.params.id}</h1>
-        <form onSubmit={this.handleSubmit.bind(this)}>
-
-          <div className="input-group form-group">
-            <input 
-              className="form-control"
-              type="text"
-              onChange={this.handleMessageChange.bind(this)}
-              value={this.state.messageInput}
-              placeholder="Oh baby a triple" />
-            <span className="input-group-btn">
-              <button className="btn btn-default">Send</button>
-            </span>
-          </div>
-
-        </form>
-        {Messages}
-      </div>
-    )
-  }
-
+Conversation.propTypes = {
+  conversation: React.PropTypes.object,
+  messages: React.PropTypes.array
 }
 
 export default Conversation;

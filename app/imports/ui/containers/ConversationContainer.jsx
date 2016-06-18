@@ -8,14 +8,15 @@ export default createContainer(({ params: { id } }) => {
   const conversationsHandle = Meteor.subscribe('myCurrentConversation', id);
   const messagesHandle = Meteor.subscribe('conversationsMessages', id);
   const loading = !conversationsHandle.ready();
-  const converstion = Conversations.findOne(id);
+  const conversation = Conversations.findOne(id);
   const messages = Messages.find({conversationId: id}).fetch();
-  const converstionExists = !loading && !!converstion;
+  const conversationExists = !loading && !!conversation;
+  
   return {
     loading,
-    converstion,
+    conversation,
     messages,
-    converstionExists,
-    conversations: converstionExists ? converstion.fetch() : [],
+    conversationExists,
+    conversations: conversationExists ? conversation.fetch() : [],
   };
 }, ConversationComponent);
