@@ -11,7 +11,7 @@ class App extends Component {
   render() {
     return (
       <div className="container">
-        <header>
+        <header className="app-header">
           <Link to={`/`}>
             <h1>Dear Teddy</h1>
           </Link>

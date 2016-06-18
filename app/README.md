@@ -3,9 +3,12 @@
 ## DB structure
 
 * conversation
+    - isArchived (after human says "done" or after 30 minutes of inactivity)
     - humanId
     - ratingFromHuman (0-5)
-    - bearId
+    - isHumanActive (flag updated every few seconds server-side on connection status, so that we don't drop bears into conversations where the human is already gone)
+    - bearId - arr
+    - isBearActive
     - ratingFromBear (0-5)
     - createdAt
     - flaggedAt
@@ -22,6 +25,20 @@
     - text
     - addedAt
     - useCount
+
+## Technical Scenarios
+
+* New user comes and chooses a role, nobody is there.
+* New user comes and chooses, no conversation is currently. 
+* User who has been there in the past and didn't close a previous conversation comes back.
+* User:human closes the app without ending the conversation 
+* User:bear closes the app without ending the conversation
+
+## Subscriptions and Publications
+
+* `myCurrentConversation` - subscribes to Conversation that has me as one of the users
+* `conversationMessages` - subscribes to all Messages that belong to my current conversation
+* `bearphrases` - (for role:bear only) subscribes to all available Bearphrases
 
 ## Deployment
 
