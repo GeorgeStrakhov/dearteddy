@@ -1,5 +1,5 @@
 import { Meteor } from 'meteor/meteor';
-import { Conversations } from '../imports/api/conversations.js'
+import { Conversations } from '../../imports/api/conversations.js'
 
 
 Meteor.methods({
