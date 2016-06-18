@@ -36,7 +36,7 @@
 
 ## Subscriptions and Publications
 
-* `myCurrentConversation` - subscribes to Conversation that has me as one of the users
+* `currentConversation` - subscribes to Conversation that has me as one of the users
 * `conversationMessages` - subscribes to all Messages that belong to my current conversation
 * `bearphrases` - (for role:bear only) subscribes to all available Bearphrases
 

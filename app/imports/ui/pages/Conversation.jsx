@@ -61,7 +61,6 @@ class Conversation extends React.Component {
       messages: [{
         message: this.state.messageInput,
         timestamp: Date.now(),
-        key: this.state.messages.length,
         humanId: 333
       }, ...this.state.messages],
       messageInput: ''

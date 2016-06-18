@@ -4,31 +4,28 @@ import { Conversations } from '../../imports/api/conversations.js'
 
 Meteor.methods({
     joinConversation(userUuid, userRole) {
-        // check whether there's conversation with a complementary role
-        // if there is one, assign this userUuid to that conversation's appropriate roleId,
-        roleToMatch = (userRole == 'human') ? 'bear' : 'human'
-        let conversationId = null
-        if (roleToMatch == 'human') {
-            conversationId = Conversations.findOne({isArchived: false, humanId: null})
-        }
-        
-        if (roleToMatch == 'bear') {
-            conversationId = Conversations.findOne({isArchived: false, bearId: null})
+
+        console.log(userUuid, userRole);
+
+        userRole = (userRole == 'human') ? 'human' : 'bear';
+        const lookingFor = (userRole == 'human') ? 'bear' : 'human';
+
+        let conversation = Conversations.find({[lookingFor+'id']: null}).fetch();
+
+        if(conversation.length == 0) {
+          conversation = Conversations.insert({
+            humanId: ((userRole == 'human') ? userUuid : null),
+            bearId: ((userRole == 'bear') ? userUuid : null),
+            isArchived: false,
+            isHumanActive: ((userRole == 'human') ? true : false),
+            isBearActive:  ((userRole == 'bear') ? true : false),
+            createdAt: new Date(),
+          });
+        } else {
+          Conversations.update(conversation._id, {$set: {[userRole+'id']: userUuid}});
         }
 
-        // if there isn't, create one.
-        if (conversationId == null) {
-            conversationId = Conversations.insert(
-                {humanId: ((userRole == 'human') ? userUuid : null),
-                 bearId: ((userRole == 'bear') ? userUuid : null),
-                 isArchived: false,
-                 isHumanActive: ((userRole == 'human') ? true : false),
-                 isBearActive:  ((userRole == 'bear') ? true : false),
-                 createdAt: new Date(),
-                })
-        }
-        console.log(userUuid, userRole);
-        return conversationId
+        return conversation._id;
 
   }
 });
