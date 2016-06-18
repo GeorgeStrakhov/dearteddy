@@ -7,9 +7,13 @@
   "dependencies": {
     "meteor-node-stubs": "~0.2.0",
     "methods": "^1.1.2",
+    "moment": "^2.13.0",
     "react": "^15.1.0",
     "react-addons-pure-render-mixin": "^15.1.0",
     "react-dom": "^15.1.0",
     "react-router": "^2.4.1"
+  },
+  "devDependencies": {
+    "faker": "^3.1.0"
   }
 }

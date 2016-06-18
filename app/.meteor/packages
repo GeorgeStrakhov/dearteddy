@@ -22,3 +22,4 @@ insecure                # Allow all DB writes from clients (for prototyping)
 react-meteor-data
 fourseven:scss
 session
+momentjs:moment
