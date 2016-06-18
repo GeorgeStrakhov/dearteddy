@@ -3,3 +3,5 @@ import '../imports/api/conversations.js'
 import '../imports/api/bearphrases.js'
 
 import '../server/joinConversation.js';
+
+import '../imports/startup/server/fixtures.js';

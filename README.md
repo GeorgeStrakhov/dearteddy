@@ -65,5 +65,5 @@ We all need somebody to talk to every now and then. The simple act of talking to
 
 * `/` - home. choose whether you want to be a bear or need a bear or go to about to find out more. When choice is made, we create a new user, assign the right role to him / her and redirect to the matching page.
 * `/matching` - loading page that is displayed while we are waiting for a match for a current user.
-* `/chat/:chatId` - single conversation page. Protected: available only to the users that are currently assigned to this conversation and admins. Displays the history (chat) of the conversation. And for the users - message entry form (freeform for user and search and choose from pre-defined for bear) as well as "Leave conversation" button.
+* `/chats/:chatId` - single conversation page. Protected: available only to the users that are currently assigned to this conversation and admins. Displays the history (chat) of the conversation. And for the users - message entry form (freeform for user and search and choose from pre-defined for bear) as well as "Leave conversation" button.
 * `/about` - static page with some description about the project and contact form
