@@ -3,7 +3,7 @@ import React, { Component } from 'react';
 class Matching extends Component {
 
   role() {
-    let role = (this.props.params.role == 'human') ? 'human' : 'bear';
+    let role = (this.props.params.role == 'human') ? 'bear' : 'human';
     return role;
   }
   
