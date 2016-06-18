@@ -1,11 +1,7 @@
 import React from 'react';
-
 import moment from 'moment';
 
-/* TODO: pasha delete this */
-import faker from 'faker';
-/* TODO: pasha delete this */
-
+import { Messages } from '../../api/messages.js';
 
 class Message extends React.Component {
   render() {
@@ -25,7 +21,7 @@ class Message extends React.Component {
         <div className={className}>
           <p>
             <span className="text-success">{user.type}</span> <br />
-            {this.props.message} <br />
+            {this.props.text} <br />
             {moment(this.props.timestamp).fromNow()}
           </p>
         </div>
@@ -37,32 +33,22 @@ class Conversation extends React.Component {
   constructor(props) {
     super(props);
 
- //   const messages = [];
-
- //   for (let i = 0; i < 10; i++) {
- //     messages.push({
- //       message: faker.lorem.sentence(),
- //       key: i,
- //       timestamp: moment(now).subtract(i, 'minutes'),
- //       humanId: (i % 2) ? 333 : null,
- //       bearId: (i % 2) ? null : 222
- //     });
- //   }
-
     this.state = {
-      //messages,
       messageInput: ''
     };
   }
 
   handleSubmit(e) {
     e.preventDefault();
-    this.setState({
-      messages: [{
-        message: this.state.messageInput,
+
+    Messages
+      .insert({
+        text: this.state.messageInput,
         timestamp: Date.now(),
-        humanId: 333
-      }, ...this.state.messages],
+        conversationId: this.props.params.id
+      });
+
+    this.setState({
       messageInput: ''
     });
   }
@@ -76,7 +62,7 @@ class Conversation extends React.Component {
   render() {
     const Messages = this.props.messages
       .map((message) => (
-          <Message {...message} />
+          <Message {...message} key={message._id} />
         ));
 
     return (
