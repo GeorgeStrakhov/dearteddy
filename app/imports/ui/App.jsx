@@ -1,4 +1,5 @@
 import React, { Component, PropTypes } from 'react';
+import { Link } from 'react-router';
 import { createContainer } from 'meteor/react-meteor-data';
 import { Messages } from '../api/messages.js'
 import { Conversations } from '../api/conversations.js'
@@ -11,8 +12,10 @@ class App extends Component {
     return (
       <div className="container">
         <header>
-          <h1>Dear Teddy</h1>
-          <h3><em>anonymous p2p life debugging</em></h3>
+          <Link to={`/`}>
+            <h1>Dear Teddy</h1>
+          </Link>
+          <p className="lead"><em>anonymous p2p life debugging</em></p>
           <hr />
           {this.props.children}
         </header>
