@@ -4,6 +4,9 @@ import '../imports/api/bearphrases.js'
 
 import './methods/joinConversation.js';
 
+import './publications/currentConversation.js';
+import './publications/conversationMessages.js';
+
 import '../imports/startup/server/fixtures.js';
 
 // Meteor.publish('conversations', () => Messages.find());

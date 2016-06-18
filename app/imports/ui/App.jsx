@@ -24,10 +24,6 @@ class App extends Component {
   }
 }
 
-App.propTypes = {
-  Messages: PropTypes.array.isRequired, //FIXME why does this give a warning?
-};
- 
 export default createContainer(() => {
   return {
     messages: Messages.find({}).fetch(),
