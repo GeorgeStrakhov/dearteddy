@@ -37,21 +37,20 @@ class Conversation extends React.Component {
   constructor(props) {
     super(props);
 
-    const messages = [];
-    const now = Date.now();
+ //   const messages = [];
 
-    for (let i = 0; i < 10; i++) {
-      messages.push({
-        message: faker.lorem.sentence(),
-        key: i,
-        timestamp: moment(now).subtract(i, 'minutes'),
-        humanId: (i % 2) ? 333 : null,
-        bearId: (i % 2) ? null : 222
-      });
-    }
+ //   for (let i = 0; i < 10; i++) {
+ //     messages.push({
+ //       message: faker.lorem.sentence(),
+ //       key: i,
+ //       timestamp: moment(now).subtract(i, 'minutes'),
+ //       humanId: (i % 2) ? 333 : null,
+ //       bearId: (i % 2) ? null : 222
+ //     });
+ //   }
 
     this.state = {
-      messages,
+      //messages,
       messageInput: ''
     };
   }
@@ -76,7 +75,7 @@ class Conversation extends React.Component {
   }
 
   render() {
-    const Messages = this.state.messages
+    const Messages = this.props.messages
       .map((message) => (
           <Message {...message} />
         ));
