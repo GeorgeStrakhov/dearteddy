@@ -1,5 +1,6 @@
 import React from 'react';
 import moment from 'moment';
+import { Session } from 'meteor/session';
 
 import { Messages } from '../../api/messages.js';
 
@@ -15,11 +16,14 @@ class MessageInput extends React.Component {
   handleSubmit(e) {
     e.preventDefault();
 
+    const role = 'bearId';
+
     Messages
       .insert({
         text: this.state.messageInput,
         timestamp: Date.now(),
-        conversationId: this.props.conversation._id
+        conversationId: this.props.conversation._id,
+        [role]: Session.get('user-uuid')
       });
 
     this.setState({
