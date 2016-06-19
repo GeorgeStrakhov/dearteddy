@@ -13,8 +13,14 @@ class Conversation extends React.Component {
   }
 
   componentWillReceiveProps(nextProps) {
-    if (nextProps.conversation && nextProps.conversation.isArchived) {
-      browserHistory.push('/');
+    if (nextProps.conversation) {
+      //flag to remember that we once had a conversation here
+      this.hasConversation = true;
+    } else {
+      if(this.hasConversation == true) {
+        //so we lost the current conversation subscription that we once had: probably the partner left
+        browserHistory.push('/');
+      }
     }
   }
 
@@ -35,7 +41,7 @@ class Conversation extends React.Component {
         <h1>ID: #{conversation._id}</h1>
         {MessageInput}
         <button 
-          onClick={() => Meteor.call('leaveConversation', conversation._id, Session.get('user-role'))}>
+          onClick={this.endConversation.bind(this)}>
           Leave Conversation
         </button>
         <MessageList messages={messages} />
