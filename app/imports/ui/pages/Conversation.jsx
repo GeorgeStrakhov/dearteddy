@@ -3,6 +3,7 @@ import MessageList from '../components/MessageList.jsx';
 import MessageInputHuman from '../components/MessageInputHuman.jsx';
 import MessageInputBear from '../components/MessageInputBear.jsx';
 import Loading from '../components/Loading.jsx';
+import { Link } from 'react-router';
 
 class Conversation extends React.Component {
   constructor(props) {
