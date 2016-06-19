@@ -14,7 +14,6 @@ export default createContainer(({ params: { id } }) => {
   const conversation = Conversations.findOne();
   const messages = Messages.find({conversationId: id}, {sort: {timestamp: -1}}).fetch();
   const conversationExists = !loading && !!conversation;
-  //FIXME - security: we need a way to check if this user indeed has this role
   const userRole = Session.get('user-role');
   const userUuid = Session.get('user-uuid');
 
