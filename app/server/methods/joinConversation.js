@@ -3,6 +3,7 @@ import { Conversations } from '../../imports/api/conversations.js';
 
 Meteor.methods({
     joinConversation(userUuid, userRole) {
+        console.log(userUuid, userRole);
         const userRoleId = userRole + 'Id';
 
         Conversations.upsert({ [userRoleId]: null }, 

@@ -14,7 +14,7 @@ export const renderRoutes = () => (
   <Router history={browserHistory}>
     <Route path="/" component={App}>
       <IndexRoute component={Home}/>
-      <Route path="matching/:role" component={MatchingContainer} />
+      <Route path="matching" component={MatchingContainer} />
       <Route path="conversations/:id" component={ConversationContainer} />
       <Route path="about" component={About} />
       <Route path="*" component={NotFound} />
