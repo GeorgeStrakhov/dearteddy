@@ -8,29 +8,28 @@ import { Link } from 'react-router';
 class Conversation extends React.Component {
 
   endConversation(event) {
-  event.preventDefault();
-  Meteor.call('endConversation', this.props.conversation._id);
+    event.preventDefault();
+    Meteor.call('endConversation', this.props.conversation._id);
+  }
 
-    }
-    
   render() { 
     const { loading, messages, conversation, userUuid, userRole, bearPhrases } = this.props;
 
     const MessageInput = (Session.get('user-role') == 'bear') ? 
-      <MessageInputBear {...this.props} /> : 
-      <MessageInputHuman {...this.props} />;
+    <MessageInputBear {...this.props} /> : 
+    <MessageInputHuman {...this.props} />;
 
     let Body;
 
     if (conversation) {
       Body = (
         <div>
-          <h1>ID: #{conversation._id}</h1>
-          {MessageInput}
-          <Link to="/" onClick={this.endConversation.bind(this)} className="btn btn-default">End conversation</Link>
-          <MessageList messages={messages} />
+        <h1>ID: #{conversation._id}</h1>
+        {MessageInput}
+        <Link to="/" onClick={this.endConversation.bind(this)} className="btn btn-default">End conversation</Link>
+        <MessageList messages={messages} />
         </div>
-      );
+        );
     } else {
       Body = <Loading />
     }
