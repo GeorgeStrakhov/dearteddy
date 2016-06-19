@@ -16,9 +16,11 @@ class Matching extends Component {
   }
   
   render() {
-    console.log("entered render() in Matching.jsx")
+
+    //write user role into the session
+    Session.set('user-role', this.role());
+
     //on render -> send a call to the server asking to put us into a relevant conversation
-    
     Meteor.call('joinConversation', Session.get('user-uuid'), this.role());
 
     //FIXME below is definitely not the right way, but works for now. need to figure out a way to reactively redirect user depending on the state of subscription
@@ -34,7 +36,7 @@ class Matching extends Component {
     //render waiting page
     return (
         <div className="page matching-page">
-          <h3>Sit tight, your {this.role()}  is on the way...</h3>
+          <h3>Sit tight, your {this.lookingFor()}  is on the way...</h3>
         </div>
     )
   }

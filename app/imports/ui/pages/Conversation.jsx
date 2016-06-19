@@ -36,6 +36,7 @@ class Conversation extends React.Component {
     this.state = {
       messageInput: ''
     };
+
   }
 
   handleSubmit(e) {
@@ -44,8 +45,9 @@ class Conversation extends React.Component {
     Messages
       .insert({
         text: this.state.messageInput,
+        [this.props.userRole + 'Id']: this.props.userUuid,
         timestamp: Date.now(),
-        conversationId: this.props.params.id
+        conversationId: this.props.conversation._id
       });
 
     this.setState({
@@ -76,7 +78,7 @@ class Conversation extends React.Component {
               type="text"
               onChange={this.handleMessageChange.bind(this)}
               value={this.state.messageInput}
-              placeholder="Oh baby a triple" />
+              placeholder="" />
             <span className="input-group-btn">
               <button className="btn btn-default">Send</button>
             </span>
