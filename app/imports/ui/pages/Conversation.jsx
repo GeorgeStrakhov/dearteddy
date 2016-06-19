@@ -6,19 +6,11 @@ import Loading from '../components/Loading.jsx';
 import { Link } from 'react-router';
 
 class Conversation extends React.Component {
-  constructor(props) {
-    super(props);
-  }
 
   endConversation(event) {
   event.preventDefault();
- // cf Meteor.call
-  Conversations.update(
-    this.props.conversation._id,
-    {$set: {isArchived: true}},
-    // browserHistory.pushState... 
+  Meteor.call('endConversation', this.props.conversation._id);
 
-      )
     }
     
   render() { 
