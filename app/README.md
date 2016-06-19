@@ -6,9 +6,9 @@
     - isArchived (after human says "done" or after 30 minutes of inactivity)
     - humanId
     - ratingFromHuman (0-5)
-    - isHumanActive (flag updated every few seconds server-side on connection status, so that we don't drop bears into conversations where the human is already gone)
+    - humanActive (flag updated every few seconds server-side on connection status, so that we don't drop bears into conversations where the human is already gone)
     - bearId - arr
-    - isBearActive
+    - bearActive
     - ratingFromBear (0-5)
     - createdAt
     - flaggedAt

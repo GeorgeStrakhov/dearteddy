@@ -8,6 +8,3 @@ import './publications/currentConversation.js';
 import './publications/conversationMessages.js';
 
 import '../imports/startup/server/fixtures.js';
-
-// Meteor.publish('conversations', () => Messages.find());
-// Meteor.publish('messages', () => Conversations.find());

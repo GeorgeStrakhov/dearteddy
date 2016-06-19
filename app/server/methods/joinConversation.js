@@ -6,14 +6,22 @@ Meteor.methods({
         console.log(userUuid, userRole);
         const userRoleId = userRole + 'Id';
 
+
+        //try to find an active (isArchived==false) conversation where a complementary role is active AND ourrole is empty
+        //if: found - update that conversation adding is[Role]active = true && [Role]Id = userUuid
+        //else: create a new conversation
+
         Conversations.upsert({ [userRoleId]: null }, 
-                             { $set: { [userRoleId]: userUuid },
+                             { $set: {
+                                 [userRoleId]: userUuid,
+                                 [userRole+'Active']: true
+                               },
                                $setOnInsert: {
                                    humanId: ((userRole === 'human') ? userUuid : null),
                                    bearId: ((userRole === 'bear') ? userUuid : null),
                                    isArchived: false,
-                                   isHumanActive: (userRole === 'human'),
-                                   isBearActive: (userRole === 'bear'),
+                                   humanActive: (userRole === 'human'),
+                                   bearActive: (userRole === 'bear'),
                                    createdAt: new Date()
                                }});
     }
