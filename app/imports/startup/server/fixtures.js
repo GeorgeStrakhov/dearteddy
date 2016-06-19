@@ -37,4 +37,6 @@ Meteor.startup(() => {
 
   }
 
+  Meteor.publish('bearPhrases', () => Bearphrases.find());
+
 });

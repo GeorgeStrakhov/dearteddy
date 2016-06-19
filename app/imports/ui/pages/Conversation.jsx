@@ -6,25 +6,23 @@ import Loading from '../components/Loading.jsx';
 class Conversation extends React.Component {
   constructor(props) {
     super(props);
-
-    this.state = {
-      messageInput: ''
-    };
-
   }
 
   render() { 
-    const { loading, messages, conversation, userUuid, userRole } = this.props;
+    const { loading, messages, conversation, userUuid, userRole, bearPhrases } = this.props;
 
     let Body;
-
-    console.log(conversation);
 
     if (conversation) {
       Body = (
         <div>
           <h1>ID: #{conversation._id}</h1>
-          <MessageInput conversation={conversation} userUuid={userUuid} userRole={userRole}/>
+          <MessageInput 
+            conversation={conversation}
+            userUuid={userUuid}
+            userRole={userRole}
+            bearPhrases={bearPhrases}
+          />
           <MessageList messages={messages} />
         </div>
       );

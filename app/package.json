@@ -10,6 +10,7 @@
     "moment": "^2.13.0",
     "react": "^15.1.0",
     "react-addons-pure-render-mixin": "^15.1.0",
+    "react-bootstrap-typeahead": "^0.5.3",
     "react-dom": "^15.1.0",
     "react-router": "^2.4.1"
   },

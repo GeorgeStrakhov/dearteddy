@@ -2,6 +2,7 @@ import { Meteor } from 'meteor/meteor';
 import { Session } from 'meteor/session';
 import { Conversations } from '../../api/conversations.js';
 import { Messages } from '../../api/messages.js';
+import { Bearphrases } from '../../api/bearphrases.js';
 import { createContainer } from 'meteor/react-meteor-data';
 import ConversationComponent from '../pages/Conversation.jsx';
 
@@ -17,14 +18,16 @@ export default createContainer(({ params: { id } }) => {
   const userRole = Session.get('user-role');
   const userUuid = Session.get('user-uuid');
 
-  console.log(Conversations.find().fetch());
-
+  const bearPhrasesHandle = Meteor.subscribe('bearPhrases');
+  const bearPhrases = Bearphrases.find().fetch();
+  
   return {
     loading,
     messages,
     userRole,
     userUuid,
     conversationExists,
+    bearPhrases,
     conversation: conversationExists ? conversation : null,
   };
 }, ConversationComponent);
