@@ -17,11 +17,10 @@ export default createContainer(({ params: { id } }) => {
   const userUuid = Session.get('user-uuid');
   return {
     loading,
-    conversation,
     messages,
     userRole,
     userUuid,
     conversationExists,
-    conversation: conversationExists ? conversation : {},
+    conversation: conversationExists ? conversation : null,
   };
 }, ConversationComponent);
