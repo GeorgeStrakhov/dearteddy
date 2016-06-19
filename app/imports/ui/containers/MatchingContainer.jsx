@@ -8,6 +8,7 @@ export default createContainer(() => {
   const loading = !conversationsHandle.ready();
   const currentConversation = Conversations.findOne();
   const conversationExists = !loading && !!currentConversation;
+
   return {
     loading,
     currentConversation,

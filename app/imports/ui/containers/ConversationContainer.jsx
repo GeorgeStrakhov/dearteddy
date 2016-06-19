@@ -6,15 +6,19 @@ import { createContainer } from 'meteor/react-meteor-data';
 import ConversationComponent from '../pages/Conversation.jsx';
 
 export default createContainer(({ params: { id } }) => {
-  const conversationsHandle = Meteor.subscribe('currentConversation');
+  const conversationsHandle = Meteor.subscribe('currentConversation', Session.get('user-uuid'), Session.get('user-role'));
+  
   const messagesHandle = Meteor.subscribe('conversationMessages', id);
-  const loading = !conversationsHandle.ready();
+  const loading = !messagesHandle.ready();
   const conversation = Conversations.findOne();
   const messages = Messages.find({conversationId: id}, {sort: {timestamp: -1}}).fetch();
   const conversationExists = !loading && !!conversation;
   //FIXME - security: we need a way to check if this user indeed has this role
   const userRole = Session.get('user-role');
   const userUuid = Session.get('user-uuid');
+
+  console.log(Conversations.find().fetch());
+
   return {
     loading,
     messages,

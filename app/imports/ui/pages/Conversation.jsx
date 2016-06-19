@@ -18,6 +18,8 @@ class Conversation extends React.Component {
 
     let Body;
 
+    console.log(conversation);
+
     if (conversation) {
       Body = (
         <div>
