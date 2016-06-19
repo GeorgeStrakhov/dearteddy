@@ -1,6 +1,7 @@
 import React from 'react';
 import MessageList from '../components/MessageList.jsx';
-import MessageInput from '../components/MessageInput.jsx';
+import MessageInputHuman from '../components/MessageInputHuman.jsx';
+import MessageInputBear from '../components/MessageInputBear.jsx';
 import Loading from '../components/Loading.jsx';
 
 class Conversation extends React.Component {
@@ -10,6 +11,8 @@ class Conversation extends React.Component {
 
   render() { 
     const { loading, messages, conversation, userUuid, userRole, bearPhrases } = this.props;
+
+    const MessageInput = (Session.get('user-role') == 'bear') ? <MessageInputBear /> : <MessageInputHuman />;
 
     let Body;
 

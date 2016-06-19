@@ -5,7 +5,7 @@ import Loading from './Loading.jsx';
 
 import { Messages } from '../../api/messages.js';
 
-class MessageInput extends React.Component {
+class MessageInputBear extends React.Component {
   constructor(props) {
     super(props);
   }
@@ -39,4 +39,4 @@ class MessageInput extends React.Component {
   }
 }
 
-export default MessageInput;
+export default MessageInputBear;
