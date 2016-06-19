@@ -12,7 +12,9 @@ class Conversation extends React.Component {
   render() { 
     const { loading, messages, conversation, userUuid, userRole, bearPhrases } = this.props;
 
-    const MessageInput = (Session.get('user-role') == 'bear') ? <MessageInputBear /> : <MessageInputHuman />;
+    const MessageInput = (Session.get('user-role') == 'bear') ? 
+      <MessageInputBear {...this.props} /> : 
+      <MessageInputHuman {...this.props} />;
 
     let Body;
 
@@ -20,12 +22,7 @@ class Conversation extends React.Component {
       Body = (
         <div>
           <h1>ID: #{conversation._id}</h1>
-          <MessageInput 
-            conversation={conversation}
-            userUuid={userUuid}
-            userRole={userRole}
-            bearPhrases={bearPhrases}
-          />
+          {MessageInput}
           <MessageList messages={messages} />
         </div>
       );
