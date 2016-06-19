@@ -9,6 +9,17 @@ class Conversation extends React.Component {
     super(props);
   }
 
+  endConversation(event) {
+  event.preventDefault();
+ // cf Meteor.call
+  Conversations.update(
+    this.props.conversation._id,
+    {$set: {isArchived: true}},
+    // browserHistory.pushState... 
+
+      )
+    }
+    
   render() { 
     const { loading, messages, conversation, userUuid, userRole, bearPhrases } = this.props;
 
@@ -23,6 +34,7 @@ class Conversation extends React.Component {
         <div>
           <h1>ID: #{conversation._id}</h1>
           {MessageInput}
+          <Link to="/" onClick={this.endConversation.bind(this)} className="btn btn-default">End conversation</Link>
           <MessageList messages={messages} />
         </div>
       );
