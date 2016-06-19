@@ -3,7 +3,7 @@ import MessageList from '../components/MessageList.jsx';
 import MessageInputHuman from '../components/MessageInputHuman.jsx';
 import MessageInputBear from '../components/MessageInputBear.jsx';
 import Loading from '../components/Loading.jsx';
-import { Link } from 'react-router';
+import { Link, browserHistory } from 'react-router';
 
 class Conversation extends React.Component {
 
@@ -12,8 +12,14 @@ class Conversation extends React.Component {
     Meteor.call('endConversation', this.props.conversation._id);
   }
 
+  componentWillReceiveProps(nextProps) {
+    if (nextProps.conversation && nextProps.conversation.isArchived) {
+      browserHistory.push('/');
+    }
+  }
+
   render() { 
-    const { loading, messages, conversation, userUuid, userRole, bearPhrases } = this.props;
+    const { loading, messages, conversation, userUuid, userRole, bearPhrasesg } = this.props;
 
     const MessageInput = (Session.get('user-role') == 'bear') ? 
     <MessageInputBear {...this.props} /> : 
@@ -21,12 +27,17 @@ class Conversation extends React.Component {
 
     let Body;
 
+    console.log(conversation);
+
     if (conversation) {
       Body = (
         <div>
         <h1>ID: #{conversation._id}</h1>
         {MessageInput}
-        <Link to="/" onClick={this.endConversation.bind(this)} className="btn btn-default">End conversation</Link>
+        <button 
+          onClick={() => Meteor.call('leaveConversation', conversation._id, Session.get('user-role'))}>
+          Leave Conversation
+        </button>
         <MessageList messages={messages} />
         </div>
         );
