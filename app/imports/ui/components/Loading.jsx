@@ -2,7 +2,6 @@ import React from 'react';
 
 export default () => (
     <div className="windows8">
-      <h1 className="text-center">Loading</h1>
       <div className="wBall" id="wBall_1">
         <div className="wInnerBall"></div>
       </div>
